@@ -26,7 +26,10 @@ class Number(Validator):
         if not isinstance(value, int):
             raise TypeError("Quantity should be integer.")
         if value < self.min_value or value > self.max_value:
-            raise ValueError(f"Quantity should not be less than {self.min_value} and greater than {self.max_value}")
+            raise ValueError(
+                f"Quantity should not be less than {self.min_value} "
+                f"and greater than {self.max_value}"
+            )
 
     pass
 
@@ -37,7 +40,10 @@ class OneOf(Validator):
 
     def validate(self, value):
         if value not in self.options:
-            raise ValueError(f"Expected {value} to be one of {tuple(self.options)}.")
+            raise (
+                ValueError(
+                    f"Expected {value} to be one of {tuple(self.options)}.")
+            )
 
     pass
 
@@ -51,12 +57,10 @@ class BurgerRecipe:
 
     sauce = OneOf(["ketchup", "mayo", "burger"])
 
-    def __init__(self, buns, cheese, tomatoes, cutlets, eggs, sauce):
+    def __init__(self, buns: int, cheese: int, tomatoes: int, cutlets: int, eggs: int, sauce: list):
         self.buns = buns
         self.cheese = cheese
         self.tomatoes = tomatoes
         self.cutlets = cutlets
         self.eggs = eggs
         self.sauce = sauce
-
-    print("Burger will be created")
